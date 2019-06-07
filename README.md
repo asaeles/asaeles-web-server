@@ -32,7 +32,6 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
 ```
     sudo ufw default deny incoming
     sudo ufw defualt allow outgoing
-    sudo ufw allow ssh
     sudo ufw allow www
     sudo ufw allow ntp/tcp
     sudo ufw allow 2200/tcp
