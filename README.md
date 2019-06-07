@@ -87,7 +87,7 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
     pip install redis
     exit
 ```
-16) Configure catalog app using `catalog.conf` and `catalog.wsgi`
+16) Configure catalog app using [`catalog.conf`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.conf) and [`catalog.wsgi`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.wsgi)
 ```
     sudo rm /etc/apache2/sites-enabled/000-default.conf
     sudo nano /etc/apache2/sites-available/catalog.conf
