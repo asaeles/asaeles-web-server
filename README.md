@@ -2,6 +2,8 @@
 
 Details for setting up the Catalog Flask App on a newly created Amazon Lightsail Ubuntu VM
 
+The server is currently setup on http://100.26.1.198/
+
 ## Server Security
 
 1) Update packages
