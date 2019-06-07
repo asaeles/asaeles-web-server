@@ -15,6 +15,7 @@ Details for setting up the Catalog Flask App on a newly created Amazon Lightsail
 ```
 3) Edit Amazon firewall settings to add new ports SSH TCP 2200 and NTP UDP 123 from the below URL
 https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-server/networking
+
 4) Edit SSH config to make sure password login is disabled and to change port to 2200
 ```
     sudo nano /etc/ssh/sshd_config
