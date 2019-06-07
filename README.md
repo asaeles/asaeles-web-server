@@ -107,7 +107,7 @@ Then run the following PSQL commands replacing 'password'
     CREATE USER catalog NOCREATEDB NOCREATEUSER PASSWORD 'password';
     CREATE DATABASE catalog OWNER catalog;
 ```
-18) Setup catalog app as per the readme file for repository
+18) Setup catalog app as per the [readme](https://github.com/asaeles/catalog/blob/master/README.md) file for repository
 ```
     cd /var/www/catalog
     sudo git clone https://github.com/asaeles/catalog.git
