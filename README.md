@@ -11,6 +11,17 @@ The server is currently setup on http://100.26.1.198/
     sudo apt-get update
     sudo apt-get upgrade
 ```
+3) Increase automatic updates by remove comment for the below from `/etc/apt/apt.conf.d/50unattended-upgrades`
+```
+    "${distro_id}:${distro_codename}-updates";
+```
+And update the `/etc/apt/apt.conf.d/20auto-upgrades` file to be as follows
+```
+    APT::Periodic::Update-Package-Lists "1";
+    APT::Periodic::Download-Upgradeable-Packages "1";
+    APT::Periodic::AutocleanInterval "7";
+    APT::Periodic::Unattended-Upgrade "1";
+```
 2) Check status of `ufw` to make sure messing up the ports won't brick the server
 ```
     sudo ufw status
@@ -18,7 +29,7 @@ The server is currently setup on http://100.26.1.198/
 3) Edit Amazon firewall settings to add new ports SSH TCP 2200 and NTP UDP 123 from the below URL
 https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-server/networking
 
-4) Edit SSH config to make sure password login is disabled and to change port to 2200
+4) Edit SSH config to make sure password login is disabled and to change port to 2200 and set `PermitRootLogin` to `no`
 ```
     sudo nano /etc/ssh/sshd_config
 ```
