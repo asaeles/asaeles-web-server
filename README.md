@@ -12,7 +12,7 @@ The server is currently setup on http://100.26.1.198/
     sudo apt-get upgrade
     sudo apt-get dist-upgrade
 ```
-3) Increase automatic updates by remove comment for the below from `/etc/apt/apt.conf.d/50unattended-upgrades`
+2) Increase automatic updates by remove comment for the below from `/etc/apt/apt.conf.d/50unattended-upgrades`
 ```
     "${distro_id}:${distro_codename}-updates";
 ```
@@ -23,24 +23,24 @@ And update the `/etc/apt/apt.conf.d/20auto-upgrades` file to be as follows
     APT::Periodic::AutocleanInterval "7";
     APT::Periodic::Unattended-Upgrade "1";
 ```
-2) Check status of `ufw` to make sure messing up the ports won't brick the server
+3) Check status of `ufw` to make sure messing up the ports won't brick the server
 ```
     sudo ufw status
 ```
-3) Edit Amazon firewall settings to add new ports SSH TCP 2200 and NTP UDP 123 from the below URL
+4) Edit Amazon firewall settings to add new ports SSH TCP 2200 and NTP UDP 123 from the below URL
 https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-server/networking
 
-4) Edit SSH config to make sure password login is disabled and to change port to 2200 and set `PermitRootLogin` to `no`
+5) Edit SSH config to make sure password login is disabled and to change port to 2200 and set `PermitRootLogin` to `no`
 ```
     sudo nano /etc/ssh/sshd_config
 ```
-5) Restart SSH service
+6) Restart SSH service
 ```
     sudo service ssh restart
 ```
-6) Test SSH on the new port and make sure it is working
+7) Test SSH on the new port and make sure it is working
 
-7) Setup `ufw`
+8) Setup `ufw`
 ```
     sudo ufw default deny incoming
     sudo ufw defualt allow outgoing
@@ -48,19 +48,19 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
     sudo ufw allow ntp/tcp
     sudo ufw allow 2200/tcp
 ```
-8) Enable `ufw`
+9) Enable `ufw`
 ```
     sudo ufw enable
     sudo ufw status
 ```
 ## Create User
 
-9) Add new user `grader`
+10) Add new user `grader`
 ```
     sudo adduser grader
 ```
-10) Create new key pair using PuTTY Key Gen for Windows then copy the public key and save the private key to "grader.ppk"
-11) Add public key to authorized keys copy/paste
+11) Create new key pair using PuTTY Key Gen for Windows then copy the public key and save the private key to "grader.ppk"
+12) Add public key to authorized keys copy/paste
 ```
     su grader
     cd ~
@@ -69,16 +69,16 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
     chmod 700 .ssh
     chmod 644 .ssh/authorized_keys
 ```
-12) Add new user to `sudoers` by copying any existing file
+13) Add new user to `sudoers` by copying any existing file
 ```
     sudo cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader
     sudo nano /etc/sudoers.d/grader
 ```
-13) Test login and `sudo` using user `grader`
+14) Test login and `sudo` using user `grader`
 
 ## Web Server Setup
 
-14) Install Apache and PostgresSQL
+15) Install Apache and PostgresSQL
 ```
     sudo apt-get install apache2
     sudo apt-get install libapache2-mod-wsgi
@@ -87,7 +87,7 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
     sudo apt install redis-server
     nohup redis-server &
 ```
-15) Install Flask and SQL Alchemy
+16) Install Flask and SQL Alchemy
 ```
     sudo apt-get install python-pip
     pip install --upgrade pip
@@ -100,7 +100,7 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
     pip install redis
     exit
 ```
-16) Configure catalog app using [`catalog.conf`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.conf) and [`catalog.wsgi`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.wsgi)
+17) Configure catalog app using [`catalog.conf`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.conf) and [`catalog.wsgi`](https://github.com/asaeles/asaeles-web-server/blob/master/catalog.wsgi)
 ```
     sudo rm /etc/apache2/sites-enabled/000-default.conf
     sudo nano /etc/apache2/sites-available/catalog.conf
@@ -111,7 +111,7 @@ https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/asaeles-web-serve
 ```
 ## Setup Catalog App
 
-17) Setup DB
+18) Setup DB
 ```
     sudo -u postgres psql
 ```
@@ -120,7 +120,7 @@ Then run the following PSQL commands replacing 'password'
     CREATE USER catalog NOCREATEDB NOCREATEUSER PASSWORD 'password';
     CREATE DATABASE catalog OWNER catalog;
 ```
-18) Setup catalog app as per the [readme](https://github.com/asaeles/catalog/blob/master/README.md) file for repository
+19) Setup catalog app as per the [readme](https://github.com/asaeles/catalog/blob/master/README.md) file for repository
 ```
     cd /var/www/catalog
     sudo git clone https://github.com/asaeles/catalog.git
