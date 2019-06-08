@@ -10,6 +10,7 @@ The server is currently setup on http://100.26.1.198/
 ```
     sudo apt-get update
     sudo apt-get upgrade
+    sudo apt-get dist-upgrade
 ```
 3) Increase automatic updates by remove comment for the below from `/etc/apt/apt.conf.d/50unattended-upgrades`
 ```
