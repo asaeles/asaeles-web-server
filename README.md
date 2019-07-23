@@ -12,7 +12,7 @@ The server is currently setup on http://100.26.1.198/
     sudo apt-get upgrade
     sudo apt-get dist-upgrade
 ```
-2) Increase automatic updates by remove comment for the below from `/etc/apt/apt.conf.d/50unattended-upgrades`
+2) Increase automatic updates by uncommenting the below line from `/etc/apt/apt.conf.d/50unattended-upgrades`
 ```
     "${distro_id}:${distro_codename}-updates";
 ```
